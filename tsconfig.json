@@ -9,6 +9,14 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
+    "paths": {
+      "ngx-state-manager": [
+        "./dist/ngx-state-manager"
+      ],
+      "ng-test": [
+        "./dist/ng-test"
+      ]
+    },
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,

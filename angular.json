@@ -3,5 +3,28 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "ngx-state-manager": {
+      "projectType": "library",
+      "root": "projects/ngx-state-manager",
+      "sourceRoot": "projects/ngx-state-manager/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngx-state-manager/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-state-manager/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-state-manager/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        }
+      }
+    }
   }
 }
