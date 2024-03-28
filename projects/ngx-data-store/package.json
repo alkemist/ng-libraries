@@ -1,7 +1,7 @@
 {
-  "name": "@alkemist/ngx-state-manager",
-  "version": "1.2.14",
-  "description": "Ngx State Manager",
+  "name": "@alkemist/ngx-data-store",
+  "version": "1.0.4",
+  "description": "Ngx Data Store",
   "scripts": {
     "test": "jest",
     "publishFirst": "npm publish --access=public"
@@ -26,18 +26,18 @@
   ],
   "author": "Jaden ACHAIN",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/alkemist/ng-libraries/tree/main/projects/ngx-state-manager#readme",
+  "homepage": "https://github.com/alkemist/ng-libraries/tree/main/projects/ngx-data-store#readme",
   "bugs": {
     "url": "https://github.com/alkemist/ng-libraries/issues"
   },
   "peerDependencies": {
-    "@alkemist/compare-engine": "^1.3.4",
+    "@alkemist/ngx-state-manager": "^1.2.14",
     "@alkemist/smart-tools": "^1.1.15",
     "@angular/common": "^17.3.0",
     "@angular/core": "^17.3.0"
   },
   "devDependencies": {
-    "@alkemist/compare-engine": "^1.3.4",
+    "@alkemist/ngx-state-manager": "^1.2.14",
     "@alkemist/smart-tools": "^1.1.15"
   },
   "dependencies": {

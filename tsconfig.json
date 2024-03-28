@@ -13,6 +13,9 @@
       "ngx-state-manager": [
         "./dist/ngx-state-manager"
       ],
+      "ngx-data-store": [
+        "./dist/ngx-data-store"
+      ],
       "ng-test": [
         "./dist/ng-test"
       ]

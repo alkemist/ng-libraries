@@ -25,6 +25,39 @@
           "defaultConfiguration": "production"
         }
       }
+    },
+    "ngx-data-store": {
+      "projectType": "library",
+      "root": "projects/ngx-data-store",
+      "sourceRoot": "projects/ngx-data-store/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngx-data-store/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-data-store/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-data-store/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/ngx-data-store/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   }
 }
