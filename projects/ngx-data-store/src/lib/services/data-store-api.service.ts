@@ -1,11 +1,11 @@
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { ApiError } from '../errors/api-error';
-import { ConfigurationProvider } from './configuration.service';
+import { DataStoreConfigurationProvider } from './data-store-configuration.provider';
 import { inject } from '@angular/core';
 
-export abstract class ApiService {
-  protected configuration = inject(ConfigurationProvider);
+export abstract class DataStoreApiService {
+  protected configuration = inject(DataStoreConfigurationProvider);
 
   protected constructor() {
   }

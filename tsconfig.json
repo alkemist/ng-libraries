@@ -16,6 +16,9 @@
       "ngx-data-store": [
         "./dist/ngx-data-store"
       ],
+      "ngx-form-supervisor": [
+        "./dist/ngx-form-supervisor"
+      ],
       "ng-test": [
         "./dist/ng-test"
       ]

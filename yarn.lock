@@ -9,17 +9,24 @@
   dependencies:
     "@alkemist/smart-tools" "^1.1.12"
 
-"@alkemist/ngx-state-manager@^1.2.14":
-  version "1.2.14"
-  resolved "https://registry.yarnpkg.com/@alkemist/ngx-state-manager/-/ngx-state-manager-1.2.14.tgz#883bf1ec1c34138eb3588704119122e84ce776d5"
-  integrity sha512-XM7kUMPzP1pdBzbP0cTt8ug4z6aV+1XMk+0siY9IwhHVy59HPUfNevqrxQ/eTbC2SPxVMpzTWTyeCEC5qTKNMA==
+"@alkemist/ngx-data-store@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@alkemist/ngx-data-store/-/ngx-data-store-1.0.9.tgz#6106b2bf8e09d657af05e97ec2dd194d249a4a0b"
+  integrity sha512-g1zYRzAd/YfT1lLE+L7GYcEISAo1dMEOiuicXWNAZYtr66nmjyINumr2SvgiT869cFr5jKxSa24TpUXnNde7WQ==
+  dependencies:
+    tslib "^2.3.0"
+
+"@alkemist/ngx-state-manager@^1.2.17":
+  version "1.2.17"
+  resolved "https://registry.yarnpkg.com/@alkemist/ngx-state-manager/-/ngx-state-manager-1.2.17.tgz#e233aab493c1aec4c5213c1207c4fccb9ab0b8b7"
+  integrity sha512-h4zUGEcHuZzeJP6SzoiiVc/YZOpSAyCJ1ZAkHzt/zYrEvwPw/tup5uLYWGnvBbb2Fy9QC/rTh4s8GK671I8gTw==
   dependencies:
     tslib "^2.3.0"
 
 "@alkemist/smart-tools@^1.1.12", "@alkemist/smart-tools@^1.1.15":
-  version "1.1.15"
-  resolved "https://registry.yarnpkg.com/@alkemist/smart-tools/-/smart-tools-1.1.15.tgz#8dc1e6bf18d1aca17f4a98747b75945b298754e6"
-  integrity sha512-CFKu4H2tMjEpy9rWZHvbPtfoecJluyWwkPOPSbNhFpnVGzig9feIMY94G6WHcYlhrFOte1yrD0jSQhYKI4Htyg==
+  version "1.1.17"
+  resolved "https://registry.npmjs.org/@alkemist/smart-tools/-/smart-tools-1.1.17.tgz"
+  integrity sha512-t5kDIo5gLgSh9haY0pcl7klkVVdZ4he2U2mlK2fIWaxFTBSq/S9lZyQcDDVOKz7rckkOyqsSnYVjy7nH5gjzZQ==
   dependencies:
     "@angular/core" "^16.2.7"
 
@@ -202,7 +209,7 @@
 
 "@angular/core@^16.2.7":
   version "16.2.12"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-16.2.12.tgz#f664204275ee5f5eb46bddc0867e7a514731605f"
+  resolved "https://registry.npmjs.org/@angular/core/-/core-16.2.12.tgz"
   integrity sha512-GLLlDeke/NjroaLYOks0uyzFVo6HyLl7VOm0K1QpLXnYvW63W9Ql/T3yguRZa7tRkOAeFZ3jw+1wnBD4O8MoUA==
   dependencies:
     tslib "^2.3.0"

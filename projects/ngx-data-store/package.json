@@ -1,6 +1,6 @@
 {
   "name": "@alkemist/ngx-data-store",
-  "version": "1.0.4",
+  "version": "1.0.12",
   "description": "Ngx Data Store",
   "scripts": {
     "test": "jest",
@@ -31,13 +31,13 @@
     "url": "https://github.com/alkemist/ng-libraries/issues"
   },
   "peerDependencies": {
-    "@alkemist/ngx-state-manager": "^1.2.14",
+    "@alkemist/ngx-state-manager": "file:projects/ngx-state-manager",
     "@alkemist/smart-tools": "^1.1.15",
     "@angular/common": "^17.3.0",
     "@angular/core": "^17.3.0"
   },
   "devDependencies": {
-    "@alkemist/ngx-state-manager": "^1.2.14",
+    "@alkemist/ngx-state-manager": "file:projects/ngx-state-manager",
     "@alkemist/smart-tools": "^1.1.15"
   },
   "dependencies": {

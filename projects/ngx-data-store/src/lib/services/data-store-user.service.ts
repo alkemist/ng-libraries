@@ -1,15 +1,15 @@
 import { inject, Injectable } from '@angular/core';
 import { catchError, map, tap } from 'rxjs';
-import { ApiService } from './api.service';
+import { DataStoreApiService } from './data-store-api.service';
 import { HttpClient } from '@angular/common/http';
 import { ApiResponseItemInterface } from '../models/api-response-item.interface';
-import { UserInterface } from '../models/user.interface';
+import { DataStoreUserInterface } from '../models/data-store-user.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService extends ApiService {
-  private loggedUser: UserInterface | null = null;
+export class DataStoreUserService extends DataStoreApiService {
+  private loggedUser: DataStoreUserInterface | null = null;
 
   private http = inject(HttpClient);
 
@@ -27,7 +27,7 @@ export class UserService extends ApiService {
   }
 
   getProfile() {
-    return this.http.get<ApiResponseItemInterface<UserInterface>>(
+    return this.http.get<ApiResponseItemInterface<DataStoreUserInterface>>(
       this.configuration.api_datastore_base_url + 'api/profile',
       {
         headers: this.buildHeaders()

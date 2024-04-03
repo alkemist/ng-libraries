@@ -6,4 +6,5 @@ export class Configuration {
   front_login_path: string = 'login';
   local_storage_auth_key: string = 'token';
   store_default_max_hour_outdated: number = 24;
+  offline_mode = false;
 }

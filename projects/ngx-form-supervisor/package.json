@@ -1,7 +1,7 @@
 {
-  "name": "@alkemist/ngx-state-manager",
-  "version": "1.2.17",
-  "description": "Ngx State Manager",
+  "name": "@alkemist/ngx-form-supervisor",
+  "version": "1.1.16",
+  "description": "Ngx Form Supervisor",
   "scripts": {
     "test": "jest",
     "publishFirst": "npm publish --access=public"
@@ -19,14 +19,17 @@
   "keywords": [
     "typescript",
     "angular",
-    "store",
-    "state",
-    "storage",
-    "manager"
+    "smart",
+    "form",
+    "restore",
+    "comparison",
+    "diff",
+    "difference",
+    "change"
   ],
   "author": "Jaden ACHAIN",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/alkemist/ng-libraries/tree/main/projects/ngx-state-manager#readme",
+  "homepage": "https://github.com/alkemist/ng-libraries/tree/main/projects/ngx-form-supervisor#readme",
   "bugs": {
     "url": "https://github.com/alkemist/ng-libraries/issues"
   },

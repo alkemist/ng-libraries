@@ -2,18 +2,18 @@ import { inject, Injectable, Type } from '@angular/core';
 import { DataStoreService } from './data-store.service';
 import { StateActionClass, StateManager } from '@alkemist/ngx-state-manager';
 import { DateHelper } from '@alkemist/smart-tools';
+import { DocumentInterface } from '../models/document.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export abstract class StateStoreService<T> extends DataStoreService<T> {
-  protected maxHourOutdated = this.configuration.store_default_max_hour_outdated;
-
+export abstract class DataStoreStateService<T extends DocumentInterface> extends DataStoreService<T> {
   private stateManager = inject(StateManager);
 
   protected constructor(
     itemKey: string,
     private FillAction: Type<StateActionClass>,
+    private FilterAction: Type<StateActionClass>,
     private GetAction: Type<StateActionClass>,
     private AddAction: Type<StateActionClass>,
     private UpdateAction: Type<StateActionClass>,
@@ -38,8 +38,28 @@ export abstract class StateStoreService<T> extends DataStoreService<T> {
     }
   }
 
-  async get(id: string) {
-    const data = await this.selectItem(id);
+  async get(slug: string) {
+    const data = await this.selectItem(slug);
+
+    if (data.token) {
+      this.stateManager.dispatch(
+        new this.GetAction(data.item)
+      )
+    }
+  }
+
+  async filter(filters: Partial<T>) {
+    const data = await this.searchItems(filters);
+
+    if (data.token) {
+      this.stateManager.dispatch(
+        new this.FilterAction(data.items)
+      )
+    }
+  }
+
+  async search(filters: Partial<T>) {
+    const data = await this.searchItem(filters);
 
     if (data.token) {
       this.stateManager.dispatch(
@@ -83,9 +103,9 @@ export abstract class StateStoreService<T> extends DataStoreService<T> {
   }
 
   storeIsOutdated(): boolean {
-    /*if (environment["APP_OFFLINE"]) {
+    if (this.configuration.offline_mode) {
       return false;
-    }*/
+    }
 
     const lastUpdated = this._lastUpdated();
     if (lastUpdated === null) {
@@ -93,6 +113,6 @@ export abstract class StateStoreService<T> extends DataStoreService<T> {
     }
 
     const nbHours = DateHelper.calcHoursAfter(lastUpdated);
-    return nbHours >= this.maxHourOutdated;
+    return nbHours >= this.configuration.store_default_max_hour_outdated;
   }
 }

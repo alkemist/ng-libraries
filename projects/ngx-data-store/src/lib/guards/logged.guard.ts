@@ -1,14 +1,14 @@
 import { CanActivateFn, Router, UrlTree } from '@angular/router';
 import { catchError, map, Observable, of } from 'rxjs';
 import { inject } from '@angular/core';
-import { UserService } from '../services/user.service';
+import { DataStoreUserService } from '../services/data-store-user.service';
 import { ApiError } from '../errors/api-error';
-import { ConfigurationProvider } from '../services/configuration.service';
+import { DataStoreConfigurationProvider } from '../services/data-store-configuration.provider';
 
 export const loggedInGuard: CanActivateFn = (): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree => {
-  const userService = inject(UserService);
+  const userService = inject(DataStoreUserService);
   const router = inject(Router);
-  const configuration = inject(ConfigurationProvider);
+  const configuration = inject(DataStoreConfigurationProvider);
 
   return userService.getProfile().pipe(
     catchError((_: ApiError) => {

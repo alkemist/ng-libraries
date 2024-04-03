@@ -5,12 +5,18 @@ import { ValueRecord } from '@alkemist/smart-tools';
 export interface DocumentStateInterface<T extends DocumentInterface> extends ValueRecord {
   lastUpdated: Date | null,
   items: T[];
+  filteredItems: T[];
+  lastFiltered: Date | null,
   item: T | null;
 }
 
 export class DocumentState<T extends DocumentInterface> {
   static lastUpdated<T extends DocumentInterface>(state: DocumentStateInterface<T>): Date | null {
     return state.lastUpdated;
+  }
+
+  static lastFiltered<T extends DocumentInterface>(state: DocumentStateInterface<T>): Date | null {
+    return state.lastFiltered;
   }
 
   static item<T extends DocumentInterface>(state: DocumentStateInterface<T>): T | null {
@@ -21,10 +27,21 @@ export class DocumentState<T extends DocumentInterface> {
     return state.items;
   }
 
+  static filteredItems<T extends DocumentInterface>(state: DocumentStateInterface<T>): T[] {
+    return state.filteredItems;
+  }
+
   fill(context: StateContext<DocumentStateInterface<T>>, payload: T[]) {
     context.patchState({
       items: payload,
       lastUpdated: new Date()
+    });
+  }
+
+  filter(context: StateContext<DocumentStateInterface<T>>, payload: T[]) {
+    context.patchState({
+      filteredItems: payload,
+      lastFiltered: new Date()
     });
   }
 
@@ -38,6 +55,8 @@ export class DocumentState<T extends DocumentInterface> {
     context.addItem('items', payload);
     context.patchState({
       item: payload,
+      filteredItems: [],
+      lastFiltered: null,
     });
   }
 
@@ -45,6 +64,8 @@ export class DocumentState<T extends DocumentInterface> {
     context.setItem('items', payload);
     context.patchState({
       item: payload,
+      filteredItems: [],
+      lastFiltered: null,
     });
   }
 
@@ -52,6 +73,8 @@ export class DocumentState<T extends DocumentInterface> {
     context.patchItem('items', payload);
     context.patchState({
       item: payload,
+      filteredItems: [],
+      lastFiltered: null,
     });
   }
 
@@ -59,6 +82,8 @@ export class DocumentState<T extends DocumentInterface> {
     context.removeItem('items', payload)
     context.patchState({
       item: null,
+      filteredItems: [],
+      lastFiltered: null,
     });
   }
 }

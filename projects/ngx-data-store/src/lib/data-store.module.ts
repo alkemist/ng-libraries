@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { Configuration } from './models/configuration';
-import { ConfigurationProvider } from './services/configuration.service';
-import { UserService } from './services/user.service';
+import { DataStoreConfigurationProvider } from './services/data-store-configuration.provider';
+import { DataStoreUserService } from './services/data-store-user.service';
 
 /**
  * @ignore
@@ -16,7 +16,7 @@ class DataStoreRootModule extends NgModule {
   imports: [],
   exports: [],
   providers: [
-    UserService
+    DataStoreUserService
   ],
   bootstrap: []
 })
@@ -26,16 +26,16 @@ export class DataStoreModule extends NgModule {
   override declarations = [];
   override imports = [];
   override exports = [];
-  override providers = [ UserService ];
+  override providers = [ DataStoreUserService ];
   override bootstrap = [];
 
   static forRoot(configuration: Configuration): ModuleWithProviders<DataStoreRootModule> {
     return {
       ngModule: DataStoreRootModule,
       providers: [
-        UserService,
+        DataStoreUserService,
         {
-          provide: ConfigurationProvider,
+          provide: DataStoreConfigurationProvider,
           useValue: configuration,
         },
       ]
