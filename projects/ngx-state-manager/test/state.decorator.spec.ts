@@ -120,7 +120,7 @@ describe("State Decorator", () => {
   it('should throw errors', () => {
     expect(() => {
       stateManager.dispatch(new Example.aUnknownValueAction(''));
-    }).toThrow(new UnknownAction('aUnknownValueAction'));
+    }).toThrow(new UnknownAction('An unknown value action'));
   })
 
   afterEach(() => {

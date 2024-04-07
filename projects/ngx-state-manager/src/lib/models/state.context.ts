@@ -109,7 +109,7 @@ export class StateContext<S extends ValueRecord> {
   }
 
   private getItems<T>(paths: ValueKey[] | ValueKey) {
-    return this.state.getInRight<T[]>(paths);
+    return this.state.getInRight<T[]>(paths) ?? [];
   }
 
   private setItems<T>(paths: ValueKey[] | ValueKey, items: T[]) {

@@ -10,7 +10,6 @@ export abstract class DataStoreApiService {
   protected constructor() {
   }
 
-
   public setToken(token: string) {
     localStorage.setItem(this.configuration.local_storage_auth_key, token);
   }
@@ -21,7 +20,8 @@ export abstract class DataStoreApiService {
 
   protected buildHeaders() {
     return new HttpHeaders({
-      'X-AUTH-TOKEN': this.getToken()
+      'X-AUTH-TOKEN': this.getToken(),
+      'X-AUTH-PROJECT': this.configuration.api_project_key,
     })
   }
 

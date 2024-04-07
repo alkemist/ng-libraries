@@ -1,47 +1,49 @@
 import { StateContext } from '@alkemist/ngx-state-manager';
-import { DocumentInterface } from './document.interface';
+import { DocumentFrontInterface } from './document.interface';
 import { ValueRecord } from '@alkemist/smart-tools';
 
-export interface DocumentStateInterface<T extends DocumentInterface> extends ValueRecord {
-  lastUpdated: Date | null,
-  items: T[];
-  filteredItems: T[];
-  lastFiltered: Date | null,
-  item: T | null;
+export interface DocumentStateInterface<
+  F extends DocumentFrontInterface
+> extends ValueRecord {
+  publicItems: F[];
+  lastUpdatedPublicItems: Date | null,
+  userItems: F[];
+  lastUpdatedUserItems: Date | null,
+  item: F | null;
 }
 
-export class DocumentState<T extends DocumentInterface> {
-  static lastUpdated<T extends DocumentInterface>(state: DocumentStateInterface<T>): Date | null {
-    return state.lastUpdated;
+export class DocumentState<T extends DocumentFrontInterface> {
+  static lastUpdatedPublicItems<T extends DocumentFrontInterface>(state: DocumentStateInterface<T>): Date | null {
+    return state.lastUpdatedPublicItems;
   }
 
-  static lastFiltered<T extends DocumentInterface>(state: DocumentStateInterface<T>): Date | null {
-    return state.lastFiltered;
+  static lastUpdatedUserItems<T extends DocumentFrontInterface>(state: DocumentStateInterface<T>): Date | null {
+    return state.lastUpdatedUserItems;
   }
 
-  static item<T extends DocumentInterface>(state: DocumentStateInterface<T>): T | null {
+  static publicItems<T extends DocumentFrontInterface>(state: DocumentStateInterface<T>): T[] {
+    return state.publicItems;
+  }
+
+  static userItems<T extends DocumentFrontInterface>(state: DocumentStateInterface<T>): T[] {
+    return state.userItems;
+  }
+
+  static item<T extends DocumentFrontInterface>(state: DocumentStateInterface<T>): T | null {
     return state.item;
   }
 
-  static items<T extends DocumentInterface>(state: DocumentStateInterface<T>): T[] {
-    return state.items;
-  }
-
-  static filteredItems<T extends DocumentInterface>(state: DocumentStateInterface<T>): T[] {
-    return state.filteredItems;
-  }
-
-  fill(context: StateContext<DocumentStateInterface<T>>, payload: T[]) {
+  fillPublicItems(context: StateContext<DocumentStateInterface<T>>, payload: T[]) {
     context.patchState({
-      items: payload,
-      lastUpdated: new Date()
+      publicItems: payload,
+      lastUpdatedPublicItems: new Date()
     });
   }
 
-  filter(context: StateContext<DocumentStateInterface<T>>, payload: T[]) {
+  fillUserItems(context: StateContext<DocumentStateInterface<T>>, payload: T[]) {
     context.patchState({
-      filteredItems: payload,
-      lastFiltered: new Date()
+      userItems: payload,
+      lastUpdatedUserItems: new Date()
     });
   }
 
@@ -52,46 +54,40 @@ export class DocumentState<T extends DocumentInterface> {
   }
 
   add(context: StateContext<DocumentStateInterface<T>>, payload: T) {
-    context.addItem('items', payload);
+    context.addItem('publicItems', payload);
+    context.addItem('userItems', payload);
     context.patchState({
       item: payload,
-      filteredItems: [],
-      lastFiltered: null,
     });
   }
 
   update(context: StateContext<DocumentStateInterface<T>>, payload: T) {
-    context.setItem('items', payload);
+    context.setItem('publicItems', payload);
+    context.setItem('userItems', payload);
     context.patchState({
       item: payload,
-      filteredItems: [],
-      lastFiltered: null,
     });
   }
 
   patch(context: StateContext<DocumentStateInterface<T>>, payload: T) {
-    context.patchItem('items', payload);
+    context.patchItem('publicItems', payload);
+    context.patchItem('userItems', payload);
     context.patchState({
       item: payload,
-      filteredItems: [],
-      lastFiltered: null,
     });
   }
 
   remove(context: StateContext<DocumentStateInterface<T>>, payload: T) {
-    context.removeItem('items', payload)
+    context.removeItem('publicItems', payload)
+    context.removeItem('userItems', payload)
     context.patchState({
       item: null,
-      filteredItems: [],
-      lastFiltered: null,
     });
   }
 
   reset(context: StateContext<DocumentStateInterface<T>>, payload: void) {
     context.patchState({
       item: null,
-      filteredItems: [],
-      lastFiltered: null,
     });
   }
 }

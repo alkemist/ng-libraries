@@ -1,6 +1,6 @@
 {
   "name": "@alkemist/ngx-data-store",
-  "version": "1.0.13",
+  "version": "1.1.38",
   "description": "Ngx Data Store",
   "scripts": {
     "test": "jest",
@@ -32,7 +32,7 @@
   },
   "peerDependencies": {
     "@alkemist/ngx-state-manager": "file:projects/ngx-state-manager",
-    "@alkemist/smart-tools": "^1.1.15",
+    "@alkemist/smart-tools": "^1.1.20",
     "@angular/common": "^17.3.0",
     "@angular/core": "^17.3.0"
   },

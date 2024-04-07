@@ -1,6 +1,7 @@
 import { ValueRecord } from "@alkemist/smart-tools";
 import { computed, Signal, WritableSignal } from '@angular/core';
 import { Action, Observe, Select, State, StateContext, StateManager } from '../src/public-api';
+import { StateAction } from '../src/lib/models/state-action';
 
 export interface UserInterface {
   id: number,
@@ -19,24 +20,27 @@ export const anObjectValueDefault = null;
 export const aBooleanValueDefault = false;
 
 export namespace Example {
-  export class aStringValueAction {
-    static readonly log = "An string value action";
+  export class aStringValueAction extends StateAction {
+    static override readonly key = "An string value action";
 
     constructor(public payload: string) {
+      super();
     }
   }
 
-  export class aObjectValueAction {
-    static readonly log = "An object value action";
+  export class aObjectValueAction extends StateAction {
+    static override readonly key = "An object value action";
 
     constructor(public payload: UserInterface) {
+      super();
     }
   }
 
-  export class aUnknownValueAction {
-    static readonly log = "An unknown value action";
+  export class aUnknownValueAction extends StateAction {
+    static override readonly key = "An unknown value action";
 
     constructor(public payload: unknown) {
+      super();
     }
   }
 }

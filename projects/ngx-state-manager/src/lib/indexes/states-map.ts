@@ -2,12 +2,12 @@ import { CONSOLE_LOG_STYLES, ConsoleHelper, ValueKey, ValueRecord } from '@alkem
 import { StateConfiguration } from '../models/state-configuration.interface';
 import { StateSelectFunction } from '../models/state-select-function.type';
 import { StateActionFunction } from '../models/state-action-function.type';
-import { WritableSignal } from '@angular/core';
+import { Type, WritableSignal } from '@angular/core';
 import { SelectsIndex } from "./selects-index";
 import { UnknownAction } from '../models/unknown-action.error';
 import { StateActionIndex } from '../models/state-action-index.interface';
 import { StateActionDefinition } from '../models/state-action-definition.interface';
-import { StateActionClass } from '../models/state-action-class.interface';
+import { StateAction } from '../models/state-action';
 
 export abstract class StatesMap {
   private static showIndexLog = false;
@@ -23,7 +23,11 @@ export abstract class StatesMap {
     if (StatesMap.showIndexLog) {
       ConsoleHelper.group(
         `[State Init][${ stateKey }] Registre select`,
-        [ { title: 'Key : ' + selectKey }, { title: 'Function', data: selectFunction }, { title: 'Path', data: path } ],
+        [
+          { title: 'Key : ' + selectKey },
+          { title: 'Function', data: selectFunction },
+          { title: 'Path', data: path }
+        ],
         [ CONSOLE_LOG_STYLES.red ]
       )
     }
@@ -43,7 +47,8 @@ export abstract class StatesMap {
       ConsoleHelper.group(
         `[State Init][${ stateKey }] Registre action`,
         [
-          { title: 'Log : ' + action.log },
+          { title: 'Key : ' + action.key },
+          { title: 'Object key : ' + (new (action as Type<StateAction>)({})).key },
           { title: 'Action', data: action },
           { title: 'Function', data: actionFunction }
         ],
@@ -52,11 +57,11 @@ export abstract class StatesMap {
     }
 
     this.actionIndex.set(
-      action.name,
+      action.key,
       {
         stateKey,
         actionFunction,
-        actionLog: action.log
+        actionLog: action.key
       }
     )
   }
@@ -106,11 +111,11 @@ export abstract class StatesMap {
     return <SelectsIndex<C, S>>StatesMap.selectsByState.get(stateKey)
   }
 
-  static dispatch(actions: StateActionClass[]) {
+  static dispatch(actions: StateAction[]) {
     const stateKeysToUpdate: string[] = [];
 
     actions.forEach(action => {
-      const actionKey = action.constructor.name;
+      const actionKey = action.key;
       const stateAction = StatesMap.actionIndex.get(actionKey);
 
       if (!stateAction) {
