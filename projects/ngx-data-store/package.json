@@ -1,6 +1,6 @@
 {
   "name": "@alkemist/ngx-data-store",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Ngx Data Store",
   "scripts": {
     "test": "jest",

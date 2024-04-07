@@ -86,4 +86,12 @@ export class DocumentState<T extends DocumentInterface> {
       lastFiltered: null,
     });
   }
+
+  reset(context: StateContext<DocumentStateInterface<T>>, payload: void) {
+    context.patchState({
+      item: null,
+      filteredItems: [],
+      lastFiltered: null,
+    });
+  }
 }

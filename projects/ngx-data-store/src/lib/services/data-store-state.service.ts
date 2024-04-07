@@ -18,6 +18,7 @@ export abstract class DataStoreStateService<T extends DocumentInterface> extends
     private AddAction: Type<StateActionClass>,
     private UpdateAction: Type<StateActionClass>,
     private DeleteAction: Type<StateActionClass>,
+    private ResetAction: Type<StateActionClass>,
   ) {
     super(itemKey);
   }
@@ -100,6 +101,14 @@ export abstract class DataStoreStateService<T extends DocumentInterface> extends
         ]
       )
     }
+  }
+
+  async reset() {
+    this.stateManager.dispatch(
+      [
+        new this.ResetAction(),
+      ]
+    )
   }
 
   storeIsOutdated(): boolean {
