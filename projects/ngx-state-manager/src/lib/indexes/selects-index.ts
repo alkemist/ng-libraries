@@ -38,7 +38,9 @@ export class SelectsIndex<C extends Object = Object, S extends ValueRecord = any
     if (this.configuration.showLog) {
       ConsoleHelper.group(
         `[State][${ this.stateKey }] Loaded`,
-        [ { title: 'Init state', data: defaultsValue } ],
+        [
+          { title: 'Init state', data: defaultsValue }
+        ],
         [
           CONSOLE_LOG_STYLES.blue,
           CONSOLE_LOG_STYLES.red
@@ -83,7 +85,7 @@ export class SelectsIndex<C extends Object = Object, S extends ValueRecord = any
 
     if (this.configuration.showLog) {
       ConsoleHelper.group(
-        `[State][${ this.stateKey }] Action "${ actionLog }"`,
+        `[State][${ this.stateKey }] Action: ${ actionLog }`,
         [
           { title: 'Payload', data: payload },
           { title: 'Before', data: this.state.leftValue },
